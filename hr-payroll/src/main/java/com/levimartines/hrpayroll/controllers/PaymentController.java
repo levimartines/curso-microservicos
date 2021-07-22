@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.levimartines.hrpayroll.models.Payment;
 import com.levimartines.hrpayroll.services.PaymentService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 @RequestMapping("/payments")
@@ -20,7 +21,12 @@ public class PaymentController {
 
 	@GetMapping("/{workerId}/days/{days}")
 	@ResponseStatus(HttpStatus.OK)
-	public Payment findByWorkerId(@PathVariable Long workerId, @PathVariable Integer days){
+	@HystrixCommand(fallbackMethod = "getPaymentAlternative")
+	public Payment getPayment(@PathVariable Long workerId, @PathVariable Integer days){
 		return paymentService.getPayment(workerId, days);
+	}
+
+	public Payment getPaymentAlternative(Long workerId, Integer days){
+		return new Payment("", 0.0, days);
 	}
 }

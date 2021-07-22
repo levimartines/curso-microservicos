@@ -34,6 +34,11 @@ public class WorkerController {
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Worker findById(@PathVariable Long id) {
+/*		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
 		log.info("PORT: {}", environment.getProperty("local.server.port"));
 		return repository.findById(id).orElse(null);
 	}
