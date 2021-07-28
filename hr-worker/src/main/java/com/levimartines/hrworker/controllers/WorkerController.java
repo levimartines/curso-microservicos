@@ -1,6 +1,7 @@
 package com.levimartines.hrworker.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,9 @@ import com.levimartines.hrworker.repositories.WorkerRepository;
 @RequestMapping("/workers")
 @Slf4j
 public class WorkerController {
+
+	@Value("${test.config}")
+	private String testConfig;
 
 	@Autowired
 	private WorkerRepository repository;
@@ -39,6 +43,7 @@ public class WorkerController {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}*/
+		log.info("CONFIG = {}", testConfig);
 		log.info("PORT: {}", environment.getProperty("local.server.port"));
 		return repository.findById(id).orElse(null);
 	}
