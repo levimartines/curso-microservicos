@@ -2,6 +2,7 @@ package com.levimartines.hrworker.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import com.levimartines.hrworker.repositories.WorkerRepository;
 @RestController
 @RequestMapping("/workers")
 @Slf4j
+@RefreshScope
 public class WorkerController {
 
 	@Value("${test.config}")
