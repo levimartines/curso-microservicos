@@ -18,6 +18,6 @@ public class UserController {
 
 	@GetMapping(value = "/search")
 	public User findByEmail(@RequestParam String email) {
-		return service.findByEmail(email);
+		return (User) service.loadUserByUsername(email);
 	}
 }

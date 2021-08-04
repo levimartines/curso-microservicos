@@ -7,6 +7,13 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      routes:
+        - id: hr-auth
+          uri: lb://hr-auth
+          filters:
+            - RemoveResponseHeader=Cookie,Set-Cookie
+          predicates:
+            - Path=/hr-auth/**
 server:
   port: 8765
 eureka:

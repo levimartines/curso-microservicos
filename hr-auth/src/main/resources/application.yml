@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: hr-auth
+security:
+  oauth2:
+    resource:
+      id: bcrypt
 eureka:
   client:
     service-url:
