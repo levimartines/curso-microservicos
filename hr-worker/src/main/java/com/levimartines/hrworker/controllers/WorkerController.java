@@ -22,14 +22,8 @@ import com.levimartines.hrworker.repositories.WorkerRepository;
 @RefreshScope
 public class WorkerController {
 
-	@Value("${test.config}")
-	private String testConfig;
-
 	@Autowired
 	private WorkerRepository repository;
-
-	@Autowired
-	private Environment environment;
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
@@ -40,13 +34,6 @@ public class WorkerController {
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Worker findById(@PathVariable Long id) {
-/*		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}*/
-		log.info("CONFIG = {}", testConfig);
-		log.info("PORT: {}", environment.getProperty("local.server.port"));
 		return repository.findById(id).orElse(null);
 	}
 }

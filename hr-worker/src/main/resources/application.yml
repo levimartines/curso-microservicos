@@ -5,13 +5,8 @@ spring:
     name: hr-worker
   config:
     import: configserver:http://localhost:8888
-  datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
+  profiles:
+    active: test
 eureka:
   client:
     service-url:
