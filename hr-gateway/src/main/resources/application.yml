@@ -14,8 +14,15 @@ spring:
             - RemoveResponseHeader=Cookie,Set-Cookie
           predicates:
             - Path=/hr-auth/**
+  main:
+    web-application-type: reactive
 server:
   port: 8765
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: MY-SECRET-KEY
 eureka:
   client:
     service-url:
