@@ -18,11 +18,6 @@ spring:
     web-application-type: reactive
 server:
   port: 8765
-security:
-  oauth2:
-    resource:
-      jwt:
-        key-value: MY-SECRET-KEY
 eureka:
   client:
     service-url:
